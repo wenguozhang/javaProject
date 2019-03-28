@@ -1,7 +1,12 @@
 package com.wgz.jetty;
 
+import java.io.File;
+
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.webapp.WebAppContext;
+
+import com.wgz.frame.options.OptionLoader;
+import com.wgz.frame.options.Options;
 
 public class JettyServer{
 	/**
@@ -18,32 +23,50 @@ public class JettyServer{
 	private final static int PORT = 8081;
 	
 	public static void main(String[] args){
+		init();
+		
+		start();
+	}
+	
+	public static void init(){
+		OptionLoader loader = new OptionLoader();
+		loader.add(new File("conf"));
+//		loader.add("com.wgz.frame.utils");
 		try {
-			start();
+			Options options = loader.load();
+			System.out.println(options);
 		} catch (Exception e) {
-			System.err.println("启动jetty服务失败！");
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+	
 	/**
 	 * 启动jetty服务器
 	 * @throws Exception 
 	 */
-	private static void start() throws Exception{
-		long start = System.currentTimeMillis();
-	    System.out.println("************启动myProject************");
-	    System.setProperty("org.eclipse.jetty.util.URI.charset", "UTF-8");
-		Server s = new Server(PORT);
-		
-		WebAppContext wac = new WebAppContext(s, WEBAPP_PATH, CONTEXT_PATH);
-		wac.setClassLoader(Thread.currentThread().getContextClassLoader());
-		wac.setInitParameter("org.eclipse.jetty.servlet.Default.useFileMappedBuffer", "false");
-		wac.setServer(s);
-//        s.setHandler(wac);
-
-		s.start();
-		System.out.println("jetty启动耗时：" + (System.currentTimeMillis() - start) + "ms");	
-		System.out.println("WEB应用端口:" + PORT + "\tWEB应用上下文：" + CONTEXT_PATH + "\nWEB应用地址：http://localhost" + (PORT == 80 ? "" : ":" + PORT) + CONTEXT_PATH);
-		s.join();
+	private static void start(){
+		try {
+			long start = System.currentTimeMillis();
+		    System.out.println("************启动myProject************");
+		    System.setProperty("org.eclipse.jetty.util.URI.charset", "UTF-8");
+			Server s = new Server(PORT);
+			
+			WebAppContext wac = new WebAppContext(s, WEBAPP_PATH, CONTEXT_PATH);
+			wac.setClassLoader(Thread.currentThread().getContextClassLoader());
+			wac.setInitParameter("org.eclipse.jetty.servlet.Default.useFileMappedBuffer", "false");
+			wac.setServer(s);
+            s.setHandler(wac);
+            s.setStopAtShutdown(true);
+			s.setStopTimeout(63000);
+	
+			s.start();
+			System.out.println("jetty启动耗时：" + (System.currentTimeMillis() - start) + "ms");	
+			System.out.println("WEB应用端口:" + PORT + "\tWEB应用上下文：" + CONTEXT_PATH + "\nWEB应用地址：http://localhost" + (PORT == 80 ? "" : ":" + PORT) + CONTEXT_PATH);
+			s.join();
+		} catch (Exception e) {
+			System.err.println("启动jetty服务失败！");
+			e.printStackTrace();
+		}
 	}	
 }

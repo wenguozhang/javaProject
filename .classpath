@@ -31,5 +31,9 @@
 	<classpathentry kind="lib" path="lib/jetty9-lib/org.eclipse.jdt.core-3.8.2.v20130121.jar"/>
 	<classpathentry kind="lib" path="lib/jetty9-lib/org.eclipse.jetty.orbit.javax.servlet.jsp.jstl-1.2.0.v201105211821.jar"/>
 	<classpathentry kind="lib" path="lib/jetty9-lib/servlet-api-3.1.jar"/>
+	<classpathentry kind="lib" path="lib/frame/commons-io-2.6.jar"/>
+	<classpathentry kind="lib" path="lib/frame/jedis-2.9.0.jar"/>
+	<classpathentry kind="lib" path="lib/frame/commons-pool2-2.6.0.jar"/>
+	<classpathentry kind="lib" path="lib/frame/option-1.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
