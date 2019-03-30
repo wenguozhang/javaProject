@@ -34,6 +34,9 @@
 	<classpathentry kind="lib" path="lib/frame/commons-io-2.6.jar"/>
 	<classpathentry kind="lib" path="lib/frame/jedis-2.9.0.jar"/>
 	<classpathentry kind="lib" path="lib/frame/commons-pool2-2.6.0.jar"/>
-	<classpathentry kind="lib" path="lib/frame/option-1.0.jar"/>
+	<classpathentry kind="lib" path="lib/slf4j-api-1.7.25.jar"/>
+	<classpathentry kind="lib" path="lib/fastjson-1.2.29.jar"/>
+	<classpathentry kind="lib" path="lib/frame/options-wgz-1.0.jar"/>
+	<classpathentry kind="lib" path="lib/frame/xmlUtil-wgz-1.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
