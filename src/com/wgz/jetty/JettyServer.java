@@ -63,45 +63,17 @@ public class JettyServer{
 		    System.setProperty("org.eclipse.jetty.util.URI.charset", "UTF-8");
 			Server server = new Server(PORT);
 			
-//			WebAppContext wac = new WebAppContext(server, WEBAPP_PATH, CONTEXT_PATH);
-//			wac.setClassLoader(Thread.currentThread().getContextClassLoader());
-//			wac.setInitParameter("org.eclipse.jetty.servlet.Default.useFileMappedBuffer", "false");
-//			wac.setServer(s);
-//            server.setHandler(wac);
-//            server.setStopAtShutdown(true);
-//			server.setStopTimeout(63000);
-			
-			Configuration.ClassList classlist = Configuration.ClassList.setServerDefault(server);
-			classlist.addAfter("org.eclipse.jetty.webapp.FragmentConfiguration",
-					"org.eclipse.jetty.plus.webapp.EnvConfiguration",
-					"org.eclipse.jetty.plus.webapp.PlusConfiguration");
-			classlist.addBefore("org.eclipse.jetty.webapp.JettyWebXmlConfiguration",
-					"org.eclipse.jetty.annotations.AnnotationConfiguration");
-
-			ServerConnector connector1 = new ServerConnector(server);
-			connector1.setIdleTimeout(30000);
-
-			server.setConnectors(new Connector[] { connector1 });
-
-			WebAppContext context = new WebAppContext();
-			context.setContextPath(CONTEXT_PATH);
-			context.setResourceBase(WEBAPP_PATH);
-			context.setInitParameter("org.eclipse.jetty.servlet.Default.dirAllowed", "false");
-			context.setDefaultsDescriptor("com/kayak/bmp/jetty/webdefault.xml");
-			if (debug)
-				context.setInitParameter("org.eclipse.jetty.servlet.Default.useFileMappedBuffer", "false");
-			server.setHandler(context);
-
-//			StatisticsHandler statHandler = new StatisticsHandler();
-//			statHandler.setHandler(context);
-//			server.setHandler(statHandler);
-
-			server.setStopAtShutdown(true);
+			WebAppContext wac = new WebAppContext(server, WEBAPP_PATH, CONTEXT_PATH);
+			wac.setClassLoader(Thread.currentThread().getContextClassLoader());
+			wac.setInitParameter("org.eclipse.jetty.servlet.Default.useFileMappedBuffer", "false");
+			wac.setServer(server);
+            server.setHandler(wac);
+            server.setStopAtShutdown(true);
 			server.setStopTimeout(63000);
-	
+			
 			server.start();
 			System.out.println("jetty启动耗时：" + (System.currentTimeMillis() - start) + "ms");	
-			System.out.println("WEB应用端口:" + PORT + "\tWEB应用上下文：" + CONTEXT_PATH + "\nWEB应用地址：http://localhost" + (PORT == 80 ? "" : ":" + PORT) + CONTEXT_PATH);
+			System.out.println("WEB应用端口:" + PORT + "\tWEB应用上下文：" + CONTEXT_PATH + "\nWEB应用地址：http://localhost" + (PORT == 80 ?  "" : ":" + PORT) + CONTEXT_PATH);
 			server.join();
 		} catch (Exception e) {
 			System.err.println("启动jetty服务失败！");
