@@ -19,7 +19,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>entry.action</servlet-name>
-		<url-pattern>/wgz/xml/*</url-pattern>
+		<url-pattern>xml/*</url-pattern>
 	</servlet-mapping>
 	
 </web-app>

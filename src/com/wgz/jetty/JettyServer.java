@@ -2,18 +2,11 @@ package com.wgz.jetty;
 
 import java.io.File;
 
-import org.eclipse.jetty.server.Connector;
 import org.eclipse.jetty.server.Server;
-import org.eclipse.jetty.server.ServerConnector;
-import org.eclipse.jetty.server.handler.StatisticsHandler;
-import org.eclipse.jetty.webapp.Configuration;
 import org.eclipse.jetty.webapp.WebAppContext;
 
 import com.wgz.frame.options.OptionLoader;
 import com.wgz.frame.options.Options;
-import com.wgz.frame.utils.JsonUtil;
-import com.wgz.http.BaseModel;
-import com.wgz.xml.XmlUtil;
 
 public class JettyServer{
 	/**
@@ -58,7 +51,6 @@ public class JettyServer{
 	private static void start(){
 		try {
 			long start = System.currentTimeMillis();
-			boolean debug = false;
 		    System.out.println("************Æô¶¯myProject************");
 		    System.setProperty("org.eclipse.jetty.util.URI.charset", "UTF-8");
 			Server server = new Server(PORT);

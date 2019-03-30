@@ -25,8 +25,11 @@ public class ActionEntry extends HttpServlet {
 	private static final Logger log = LoggerFactory.getLogger(ActionEntry.class);
 	
 	@Override
+	public void init(){
+		System.out.println("Action初始化");
+	}
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		System.out.println("xml请求");
         try {
             // 读取请求报文
             String content = getRequestParams(request);
@@ -40,7 +43,6 @@ public class ActionEntry extends HttpServlet {
 	    }
             
 	}
-	
 	
     private String getRequestParams(HttpServletRequest request) throws Exception {
         try (InputStream is = request.getInputStream(); ByteArrayOutputStream os = new ByteArrayOutputStream()) {
