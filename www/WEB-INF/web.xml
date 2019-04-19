@@ -6,11 +6,17 @@
 	
 	<display-name>WgzProject</display-name>
 	
-	<context-param>
+	<!-- <context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/applicationContext.xml</param-value>
 		<param-value>/WEB-INF/mybatis-config.xml</param-value>
 	</context-param>
+	
+	平台日志配置文件
+	<context-param>
+		<param-name>log4jPath</param-name>
+		<param-value>WEB-INF/log4j2.properties</param-value>
+	</context-param> -->
 	
 	<!-- 载入Spring上下文环境 -->
     <listener>
@@ -52,7 +58,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>springMVC</servlet-name>
-        <url-pattern>*.do</url-pattern>
+        <url-pattern>/*.do</url-pattern>
     </servlet-mapping>    
     <servlet-mapping>
         <servlet-name>springMVC</servlet-name>

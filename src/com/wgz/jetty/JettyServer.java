@@ -24,8 +24,7 @@ public class JettyServer{
 	
 	public static void main(String[] args){
 		
-		init();
-		
+//		init();
 		
 		start();
 	}
