@@ -59,5 +59,6 @@
 	<classpathentry kind="lib" path="lib/spring/spring-webflux-5.1.6.RELEASE.jar"/>
 	<classpathentry kind="lib" path="lib/spring/spring-webmvc-5.1.6.RELEASE.jar"/>
 	<classpathentry kind="lib" path="lib/spring/spring-websocket-5.1.6.RELEASE.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
